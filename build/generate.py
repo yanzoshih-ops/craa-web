@@ -62,6 +62,7 @@ if __name__ == "__main__":
             active=p["active"],
             content=p["content"],
             body_class=p.get("body_class", ""),
+            filename=p["filename"],
         )
         build.write(p["filename"], html)
     print(f"\n共產生 {len(PAGES)} 個頁面。")

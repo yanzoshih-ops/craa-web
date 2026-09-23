@@ -12,7 +12,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SITE_NAME = "中華AI機器人理財協會"
 SITE_NAME_EN = "Chinese Robo-Advisor Association"
-SITE_URL = "https://craa-tw.github.io"  # 部署後請自行替換為實際網址
+SITE_URL = "https://www.craa.org.tw"
 CONTACT_EMAIL = "craa.tw@gmail.com"
 FACEBOOK_URL = "https://www.facebook.com/profile.php?id=100057627691904"
 
@@ -69,10 +69,11 @@ def render_nav_mobile(active):
     return "\n".join(html)
 
 
-def page(title, description, active, content, body_class=""):
+def page(title, description, active, content, body_class="", filename="index.html"):
     full_title = f"{title} | {SITE_NAME} CRAA" if title != SITE_NAME else f"{SITE_NAME}｜{SITE_NAME_EN} (CRAA)"
     nav_desktop = render_nav_desktop(active)
     nav_mobile = render_nav_mobile(active)
+    page_url = f"{SITE_URL}/" if filename == "index.html" else f"{SITE_URL}/{filename}"
 
     return f"""<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -82,11 +83,12 @@ def page(title, description, active, content, body_class=""):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{full_title}</title>
 <meta name="description" content="{description}">
-<link rel="canonical" href="{SITE_URL}/">
+<link rel="canonical" href="{page_url}">
 <meta property="og:title" content="{full_title}">
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/img/logo-color.png">
+<meta property="og:url" content="{page_url}">
+<meta property="og:image" content="{SITE_URL}/assets/img/logo-color.png">
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="assets/img/favicon-32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="assets/img/favicon-192.png" sizes="192x192">
